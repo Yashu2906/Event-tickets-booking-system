@@ -6,10 +6,12 @@ import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import MyBookings from "./pages/MyBookings";
 import EventDetails from "./pages/EventDetails";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />

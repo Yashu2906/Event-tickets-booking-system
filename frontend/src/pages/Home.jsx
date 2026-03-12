@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import API from "../services/api";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Home = () => {
   const [events, setEvents] = useState([]);
@@ -32,6 +33,7 @@ const Home = () => {
           <p>Event : {event.price}</p>
         </div>
       ))}
+      <Footer />
     </div>
   );
 };

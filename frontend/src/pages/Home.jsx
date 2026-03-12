@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import API from "../services/api";
+import Navbar from "../components/Navbar";
 
 const Home = () => {
   const [events, setEvents] = useState([]);
@@ -21,7 +22,9 @@ const Home = () => {
 
   return (
     <div>
+      <Navbar />
       <h1>Events</h1>
+
       {events.map((event) => (
         <div key={event.id}>
           <h3>{event.title}</h3>

@@ -6,6 +6,8 @@ import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import MyBookings from "./pages/MyBookings";
 import EventDetails from "./pages/EventDetails";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const App = () => {
   return (
     <BrowserRouter>
@@ -17,6 +19,7 @@ const App = () => {
         <Route path="/bookings" element={<MyBookings />} />
         <Route path="/events/:id" element={<EventDetails />} />
       </Routes>
+      <ToastContainer />
     </BrowserRouter>
   );
 };

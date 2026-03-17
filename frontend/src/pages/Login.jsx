@@ -1,11 +1,25 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const LoginPage = () => {
   const [form, setForm] = useState({ email: "", password: "" });
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleLogin = async () => {
+    try {
+      const res = await axios.post("http://localhost:5000/api/auth/login", {
+        email: form.email,
+        password: form.password,
+      });
+      toast.success(res.data.message);
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
   };
 
   return (
@@ -55,7 +69,10 @@ const LoginPage = () => {
           </div>
 
           {/* Login Button */}
-          <button className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-lg text-sm transition-all duration-200 tracking-wide">
+          <button
+            onClick={handleLogin}
+            className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-lg text-sm transition-all duration-200 tracking-wide"
+          >
             Login →
           </button>
         </div>

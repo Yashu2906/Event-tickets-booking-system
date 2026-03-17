@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const RegisterPage = () => {
   const [accountType, setAccountType] = useState("User");
@@ -8,6 +10,19 @@ const RegisterPage = () => {
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleRegister = async () => {
+    try {
+      const res = await axios.post("http://localhost:5000/api/auth/register", {
+        name: form.name,
+        email: form.email,
+        password: form.password,
+      });
+      toast.success(res.data.message);
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
   };
 
   return (
@@ -69,7 +84,10 @@ const RegisterPage = () => {
           </div>
 
           {/* Submit */}
-          <button className="w-full bg-[#E50914] hover:bg-red-700 text-white font-bold py-3.5 rounded-lg text-sm transition-all duration-200 tracking-wide">
+          <button
+            onClick={handleRegister}
+            className="w-full bg-[#E50914] hover:bg-red-700 text-white font-bold py-3.5 rounded-lg text-sm transition-all duration-200 tracking-wide"
+          >
             Create Account →
           </button>
         </div>
